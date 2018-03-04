@@ -1,4 +1,4 @@
-# Curly braces
+## Curly braces
 
 [![Build Status](https://travis-ci.org/LucianBuzzo/curly-braces.svg?branch=master)](https://travis-ci.org/LucianBuzzo/curly-braces)
 
@@ -10,13 +10,13 @@ All input strings should be nonempty, and should only consist of open
 parentheses '(' , closed parentheses ')', open brackets '[', closed brackets ']'
 , open curly braces '{' and closed curly braces '}'.
 
-## What is considered Valid?
+### What is considered Valid?
 
 A string of braces is considered valid if all braces are matched with the correct brace. For example:
 
-'(){}[]' and '([{}])' would be considered valid, while '(}', '[(])', and '[({})](]' would be considered invalid.
+`'(){}[]'` and `'([{}])'` would be considered valid, while `'(}'`, `'[(])'`, and `'[({})](]'` would be considered invalid.
 
-## Usage
+### Usage
 
 ```js
 const isValid = validBraces('()[]{()}');
