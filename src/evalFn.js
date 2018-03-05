@@ -1,4 +1,4 @@
-exports.validBraces = function validBraces(braces) {
+exports.parse = function validBraces(braces) {
 	const evalWithKContext = (prog) => {
 		return function() {
 			return eval(prog);
