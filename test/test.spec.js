@@ -42,3 +42,4 @@ const test = (name, validBraces) => {
 
 test('evalFn', parsers.evalFn);
 test('stackProc', parsers.stackProc);
+test('stackRec', parsers.stackRec);
