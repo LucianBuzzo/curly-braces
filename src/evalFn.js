@@ -1,22 +1,21 @@
-exports.parse = function validBraces(braces) {
-	const evalWithKContext = (prog) => {
-		return function() {
-			return eval(prog);
-		}.call((() => {
-			const K = function(val) {
-				if (val.val) {
-					return this.val
-				}
-				var x = (y) => new K(y.val ? val : y);
-				x.val = val;
-				return x;
-			};
-			return { K };
-		})());
+const K = function(val) {
+	if (val.val) {
+		return this.val
 	}
+	const x = (y) => new K(y.val ? val : y)
+	x.val = val
+	return x
+}
 
-	const s = (val) => `((a => a.val === "${val}" ? a : this.K(false))`;
-	const e = (val) => `(new this.K("${val}")))`;
+const evalWithKContext = (prog) =>
+	function() {
+		return eval(prog)
+	}.call({ K })
+
+const s = (val) => `((a => a.val === "${val}" ? a : this.K(false))`
+const e = (val) => `(new this.K("${val}")))`
+
+exports.parse = function validBraces(braces) {
 	braces = braces
 		.replace(/\{/g, 'xa')
 		.replace(/\}/g, 'xb')
@@ -34,8 +33,8 @@ exports.parse = function validBraces(braces) {
 
 	try {
 		const res = evalWithKContext(braces)
-		return res.val !== false;
+		return res.val !== false
 	} catch (e) {
-		return false;
+		return false
 	}
 }
