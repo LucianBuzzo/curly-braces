@@ -10,6 +10,7 @@ const test = (name, validBraces) => {
 		});
 
 		it('should handle basic invalid braces', function() {
+			assert.equal(validBraces(']'), false);
 			assert.equal(validBraces('(}'), false);
 			assert.equal(validBraces('[(])'), false);
 			assert.equal(validBraces('(})'), false);
@@ -40,3 +41,4 @@ const test = (name, validBraces) => {
 };
 
 test('evalFn', parsers.evalFn);
+test('stackProc', parsers.stackProc);
