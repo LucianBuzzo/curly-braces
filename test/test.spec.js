@@ -1,5 +1,6 @@
 const assert = require('chai').assert;
-const parsers = require('../src');
+const path = require('path');
+const fs = require('fs');
 
 const test = (name, validBraces) => {
 	describe(`${name} implementation`, function() {
@@ -40,6 +41,6 @@ const test = (name, validBraces) => {
 	});
 };
 
-test('evalFn', parsers.evalFn);
-test('stackProc', parsers.stackProc);
-test('stackRec', parsers.stackRec);
+fs.readdirSync('src').forEach(filePath => {
+	test(filePath, require(path.join('..', 'src', filePath)).parse)
+});
