@@ -41,6 +41,12 @@ const test = (name, validBraces) => {
 	});
 };
 
-fs.readdirSync('src').forEach(filePath => {
+const implementationFiles = fs.readdirSync('src')
+	.filter(filePath => path.extname(filePath) === '.js')
+	.sort();
+
+assert.isAbove(implementationFiles.length, 0, 'expected at least one src implementation');
+
+implementationFiles.forEach(filePath => {
 	test(filePath, require(path.join('..', 'src', filePath)).parse)
 });
