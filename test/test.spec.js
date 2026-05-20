@@ -41,6 +41,8 @@ const test = (name, validBraces) => {
 	});
 };
 
-fs.readdirSync('src').forEach(filePath => {
-	test(filePath, require(path.join('..', 'src', filePath)).parse)
+const srcDir = path.join(__dirname, '..', 'src');
+
+fs.readdirSync(srcDir).sort().forEach(filePath => {
+	test(filePath, require(path.join(srcDir, filePath)).parse)
 });
